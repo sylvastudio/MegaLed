@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="MegaLed - Scrolling LED marquee sign app">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- iOS PWA Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MegaLed">
+
+  <!-- Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Icons (placeholder references) -->
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192x192.png">
+
+  <title>MegaLed</title>
+
+  <!-- Google Fonts: LED pixel font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Phone mockup wrapper (visible on desktop only) -->
+  <div class="phone-mockup" id="phoneMockup">
+    <div class="phone-mockup__notch"></div>
+    <div class="phone-mockup__screen">
+
+  <!-- ===== INPUT SCREEN ===== -->
+  <div class="screen-input" id="inputScreen">
+    <div class="screen-input__inner">
+
+      <!-- Header / Logo -->
+      <header class="header">
+        <h1 class="header__logo">MegaLed</h1>
+        <p class="header__tagline">Scrolling LED Marquee Sign</p>
+      </header>
+
+      <!-- Text Input -->
+      <div class="input-group">
+        <span class="section-label">Your Message</span>
+        <input
+          type="text"
+          id="ledTextInput"
+          class="input-field"
+          placeholder="Type your message..."
+          maxlength="50"
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <div class="char-counter" id="charCounter">
+          <span class="char-counter__text">0 / 50</span>
+          <div class="char-counter__bar">
+            <div class="char-counter__bar-fill" id="charBarFill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LED Style Selector -->
+      <div>
+        <span class="section-label">LED Style</span>
+        <div class="style-picker__grid" id="styleSelector">
+          <button type="button" class="style-swatch style-swatch--red is-active" data-style="classic-red" aria-label="Classic Red LED style">
+            <span class="style-swatch__preview">A</span>
+            <span class="style-swatch__label">Classic Red</span>
+            <span class="style-swatch__check"></span>
+          </button>
+          <button type="button" class="style-swatch style-swatch--neon" data-style="neon-glow" aria-label="Neon Glow LED style">
+            <span class="style-swatch__preview">A</span>
+            <span class="style-swatch__label">Neon Glow</span>
+            <span class="style-swatch__check"></span>
+          </button>
+          <button type="button" class="style-swatch style-swatch--green" data-style="green-matrix" aria-label="Green Matrix LED style">
+            <span class="style-swatch__preview">A</span>
+            <span class="style-swatch__label">Matrix</span>
+            <span class="style-swatch__check"></span>
+          </button>
+          <button type="button" class="style-swatch style-swatch--blue" data-style="blue-ice" aria-label="Blue Ice LED style">
+            <span class="style-swatch__preview">A</span>
+            <span class="style-swatch__label">Blue Ice</span>
+            <span class="style-swatch__check"></span>
+          </button>
+          <button type="button" class="style-swatch style-swatch--rainbow" data-style="rainbow" aria-label="Rainbow LED style">
+            <span class="style-swatch__preview">A</span>
+            <span class="style-swatch__label">Rainbow</span>
+            <span class="style-swatch__check"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <!-- Speed Slider -->
+        <div class="control-slider">
+          <div class="control-slider__header">
+            <span class="control-slider__label">Speed</span>
+            <span class="control-slider__value" id="speedValue">5</span>
+          </div>
+          <input
+            type="range"
+            id="speedSlider"
+            class="control-slider__input"
+            min="1"
+            max="10"
+            value="5"
+            step="1"
+          >
+        </div>
+
+        <!-- Font Size Slider -->
+        <div class="control-slider">
+          <div class="control-slider__header">
+            <span class="control-slider__label">Font Size</span>
+            <span class="control-slider__value" id="sizeValue">80px</span>
+          </div>
+          <input
+            type="range"
+            id="sizeSlider"
+            class="control-slider__input"
+            min="40"
+            max="200"
+            value="80"
+            step="10"
+          >
+        </div>
+
+        <!-- Direction Toggle -->
+        <div class="control-toggle">
+          <span class="control-toggle__label">Direction</span>
+          <div class="control-toggle__options">
+            <span class="control-toggle__option is-active" data-dir="ltr">LTR</span>
+            <label class="toggle">
+              <input type="checkbox" class="toggle__input" id="directionToggle">
+              <span class="toggle__track"></span>
+            </label>
+            <span class="control-toggle__option" data-dir="rtl">RTL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Play Button -->
+      <button type="button" class="btn-play" id="playBtn" aria-label="Play LED marquee">
+        <span class="btn-play__icon">&#9654;</span>
+        Play
+      </button>
+
+    </div>
+  </div>
+
+    </div><!-- /.phone-mockup__screen -->
+    <div class="phone-mockup__home-bar"></div>
+  </div><!-- /.phone-mockup -->
+
+  <!-- ===== LED DISPLAY SCREEN ===== -->
+  <div class="screen-display" id="displayScreen">
+    <button type="button" class="btn-close" id="closeBtn" aria-label="Close display">&#10005;</button>
+    <div class="screen-display__vignette"></div>
+    <div class="led-scroller">
+      <div class="led-text" id="ledText"></div>
+    </div>
+  </div>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+</body>
+</html>
